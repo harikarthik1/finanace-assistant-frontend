@@ -163,45 +163,47 @@ const Expenses = () => {
         </div>
       </form>
 
-      <table className="expenses-table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Subcategory</th>
-            <th>Amount (₹)</th>
-            <th>Note</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.length > 0 ? (
-            expenses.map((exp) => (
-              <tr key={exp._id}>
-                <td>{exp.category}</td>
-                <td>{exp.subcategory}</td>
-                <td>₹{exp.amount}</td>
-                <td>{exp.note || "-"}</td>
-                <td>{new Date(exp.createdAt).toLocaleDateString()}</td>
-                <td>
-                  <button className="btn edit-btn" onClick={() => handleEdit(exp)}>
-                    Edit
-                  </button>
-                  <button className="btn delete-btn" onClick={() => handleDelete(exp._id)}>
-                    Delete
-                  </button>
+      <div className="expenses-table-container">
+        <table className="expenses-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Subcategory</th>
+              <th>Amount (₹)</th>
+              <th>Note</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {expenses.length > 0 ? (
+              expenses.map((exp) => (
+                <tr key={exp._id}>
+                  <td data-label="Category">{exp.category}</td>
+                  <td data-label="Subcategory">{exp.subcategory}</td>
+                  <td data-label="Amount">₹{exp.amount}</td>
+                  <td data-label="Note">{exp.note || "-"}</td>
+                  <td data-label="Date">{new Date(exp.createdAt).toLocaleDateString()}</td>
+                  <td data-label="Actions">
+                    <button className="btn edit-btn" onClick={() => handleEdit(exp)}>
+                      Edit
+                    </button>
+                    <button className="btn delete-btn" onClick={() => handleDelete(exp._id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="no-expenses">
+                  No expenses found.
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" className="no-expenses">
-                No expenses found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

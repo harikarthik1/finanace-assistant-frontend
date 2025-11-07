@@ -12,7 +12,6 @@ body {
 }
 
 /* Navbar */
-/* General Navbar Style */
 .navbar {
   background-color: #4f46e5;
   color: white;
@@ -207,8 +206,6 @@ body {
 }
 
 /* Dashboard */
-/* Dashboard Container */
-/* Dashboard Container */
 .dashboard-page {
   padding: 20px;
   font-family: Arial, sans-serif;
