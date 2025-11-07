@@ -206,32 +206,115 @@ body {
 }
 
 /* Dashboard */
+/* 🌟 Dashboard Page */
 .dashboard-page {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f9fafb;
+  padding: 30px 20px;
+  background: linear-gradient(180deg, #f9fafb 0%, #eef2ff 100%);
+  min-height: calc(100vh - 80px);
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page Title */
+.dashboard-page h2 {
+  text-align: center;
+  color: #1f2937;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
 }
 
 /* Alerts */
 .alert {
-  background-color: #fef3c7;
-  color: #78350f;
-  border: 1px solid #fcd34d;
-  padding: 12px 18px;
-  border-radius: 6px;
-  margin-bottom: 25px;
   text-align: center;
+  max-width: 600px;
+  margin: 10px auto 25px;
+  padding: 12px 18px;
+  border-radius: 10px;
   font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Salary Input Section */
+.alert.success {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #6ee7b7;
+}
+
+/* 💼 Overview Section */
+.overview-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 25px auto 40px;
+  max-width: 1000px;
+}
+
+.overview-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  transition: all 0.25s ease;
+  border-top: 4px solid #6366f1;
+}
+
+.overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.overview-card h3 {
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.overview-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.overview-card small {
+  display: block;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* 🏦 Highlight Total Savings Card */
+.savings-highlight {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  border: none;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+}
+
+.savings-highlight h3 {
+  color: white;
+}
+
+.savings-highlight p {
+  color: white;
+  font-size: 1.8rem;
+}
+
+.savings-highlight small {
+  color: #e0e7ff;
+}
+
+/* 🧾 Salary Input Section */
 .salary-input {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 35px;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .salary-input label {
@@ -247,6 +330,12 @@ body {
   outline: none;
   width: 180px;
   font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.salary-input input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
 }
 
 .salary-input button {
@@ -257,151 +346,61 @@ body {
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .salary-input button:hover {
   background-color: #4338ca;
 }
 
-/* Summary Cards */
-.summary-cards {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 45px;
-}
-
-.card {
-  padding: 20px;
-  width: 220px;  
-  height: 140px; 
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-}
-
-.card h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.card p {
-  margin: 6px 0 0 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.card small {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: #f3f4f6;
-}
-
-/* Card Colors */
-.card:nth-child(1) { /* Total Salary */
-  background-color: #4f46e5;
-  color: white;
-}
-
-.card:nth-child(2) { /* Total Expenses */
-  background-color: #ef4444;
-  color: white;
-}
-
-.card:nth-child(3) { /* Remaining Budget */
-  background-color: #10b981;
-  color: white;
-}
-
-.card.savings-card {
-  background-color: #06b6d4; /* Teal savings */
-  color: white;
-}
-
-/* Overspending and Budget Status */
-.over-budget {
-  background-color: #ef4444;
-  color: white;
-}
-
-.budget-ok {
-  background-color: #10b981;
-  color: white;
-}
-
-.overspend-warning {
-  margin-top: 5px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #fff5f5;
-  text-align: center;
-}
-
-/* Remaining Budget & Savings Cards */
-.remaining-card {
-  background-color: #4f46e5;
-  color: white;
-}
-
-.savings-card {
-  background-color: #fbbf24;
-  color: white;
-}
-
-/* Charts Section */
+/* 📊 Charts Layout */
 .charts {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
 }
 
 .chart {
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
   width: 380px;
   max-width: 95%;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease-in-out;
 }
 
 .chart h4 {
   text-align: center;
   margin-bottom: 18px;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #111827;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 800px) {
-  .summary-cards, .charts {
+/* 🪶 Responsive Layout */
+@media (max-width: 900px) {
+  .overview-section {
     flex-direction: column;
     align-items: center;
   }
 
-  .salary-input {
-    justify-content: center;
+  .overview-card {
+    width: 85%;
   }
 
-  .card, .chart {
+  .charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart {
     width: 90%;
   }
 }
 
-
-/* Tooltip styling (Chart.js) */
+/* Tooltip for Chart.js */
 .chartjs-tooltip {
   background-color: rgba(79, 70, 229, 0.9) !important;
   color: #fff !important;
@@ -409,7 +408,6 @@ body {
   border-radius: 4px !important;
   font-size: 0.9rem !important;
 }
-
 
 /* Loading */
 .loading {
@@ -427,7 +425,7 @@ body {
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Title */
+/* Page Title */
 .expenses-title {
   text-align: center;
   color: #1f2937;
@@ -459,7 +457,33 @@ body {
   border: 1px solid #fecaca;
 }
 
-/* 🌈 Expense Form */
+/* 🌈 Filters (Month/Year) */
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filters select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* 🧾 Expense Form */
 .expenses-form {
   max-width: 600px;
   margin: 0 auto 40px;
@@ -477,7 +501,7 @@ body {
 
 .expenses-form label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-weight: 600;
   color: #374151;
 }
@@ -500,9 +524,11 @@ body {
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
+/* Buttons */
 .form-buttons {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -538,13 +564,14 @@ body {
   background-color: #dc2626;
 }
 
-/* 🧾 Table Styling */
+/* 🪶 Expense Table Container */
 .expenses-table-container {
   width: 100%;
   overflow-x: auto;
   margin-top: 20px;
 }
 
+/* 💰 Expenses Table */
 .expenses-table {
   width: 100%;
   max-width: 950px;
@@ -581,11 +608,23 @@ body {
   transition: background 0.2s ease;
 }
 
-/* Action buttons */
+.no-expenses {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
+}
+
+/* Buttons inside table */
 .edit-btn {
   background-color: #fbbf24;
   color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
 .edit-btn:hover {
   background-color: #d97706;
 }
@@ -593,20 +632,33 @@ body {
 .delete-btn {
   background-color: #ef4444;
   color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
 .delete-btn:hover {
   background-color: #b91c1c;
 }
 
-/* Empty message */
-.no-expenses {
-  text-align: center;
-  color: #6b7280;
-  padding: 20px;
+/* 🧩 Responsive Design */
+
+/* Scrollable table for medium screens */
+@media screen and (max-width: 900px) {
+  .expenses-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .expenses-table {
+    min-width: 700px;
+  }
 }
 
-/* 💡 Responsive Table (Card layout for small screens) */
-@media screen and (max-width: 700px) {
+/* 📱 Card layout for small screens */
+@media screen and (max-width: 600px) {
   .expenses-table,
   .expenses-table thead,
   .expenses-table tbody,
@@ -645,9 +697,8 @@ body {
 
   .edit-btn,
   .delete-btn {
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 0.85rem;
-    border-radius: 6px;
   }
 
   .form-buttons {
@@ -655,7 +706,7 @@ body {
   }
 }
 
-/* 🟣 Floating “Add Expense” Button (mobile view) */
+/* 💠 Floating Add Button (optional for mobile UX) */
 @media screen and (max-width: 600px) {
   .floating-add-btn {
     position: fixed;

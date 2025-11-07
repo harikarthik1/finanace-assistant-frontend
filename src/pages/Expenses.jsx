@@ -6,12 +6,16 @@ import "../index.css";
 const Expenses = () => {
   const [form, setForm] = useState({ category: "", subcategory: "", amount: "", note: "" });
   const [expenses, setExpenses] = useState([]);
+  const [filteredExpenses, setFilteredExpenses] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [alert, setAlert] = useState({ type: "", message: "" });
 
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
   const token = localStorage.getItem("token");
 
-  // Fetch all expenses
+  // ✅ Fetch all expenses
   const fetchExpenses = async () => {
     try {
       const res = await axios.get("https://finanace-assistant-backend.onrender.com/api/expenses", {
@@ -28,7 +32,21 @@ const Expenses = () => {
     fetchExpenses();
   }, []);
 
-  // Form validation
+  // ✅ Filter expenses by selected month/year
+  useEffect(() => {
+    if (!expenses.length) return;
+
+    const filtered = expenses.filter((exp) => {
+      const date = new Date(exp.createdAt);
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return month === parseInt(selectedMonth) && year === parseInt(selectedYear);
+    });
+
+    setFilteredExpenses(filtered);
+  }, [selectedMonth, selectedYear, expenses]);
+
+  // ✅ Validate Form
   const validate = () => {
     if (!form.category || !form.subcategory || !form.amount || form.amount <= 0) {
       setAlert({ type: "error", message: "Please fill all required fields correctly." });
@@ -37,7 +55,7 @@ const Expenses = () => {
     return true;
   };
 
-  // Add or update expense
+  // ✅ Add or Update Expense
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -65,7 +83,7 @@ const Expenses = () => {
     }
   };
 
-  // Delete expense
+  // ✅ Delete Expense
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this expense?")) return;
     try {
@@ -80,7 +98,7 @@ const Expenses = () => {
     }
   };
 
-  // Edit expense
+  // ✅ Edit Expense
   const handleEdit = (expense) => {
     setForm({
       category: expense.category,
@@ -97,6 +115,26 @@ const Expenses = () => {
 
       {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
 
+      {/* 🌈 Month/Year Filters */}
+      <div className="filters">
+        <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+          {Array.from({ length: 12 }, (_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {new Date(0, i).toLocaleString("default", { month: "long" })}
+            </option>
+          ))}
+        </select>
+
+        <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+          {[2023, 2024, 2025, 2026].map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* 💰 Expense Form */}
       <form className="expenses-form" onSubmit={handleSubmit}>
         <label>Category</label>
         <select
@@ -163,6 +201,7 @@ const Expenses = () => {
         </div>
       </form>
 
+      {/* 🧾 Expense Table */}
       <div className="expenses-table-container">
         <table className="expenses-table">
           <thead>
@@ -176,8 +215,8 @@ const Expenses = () => {
             </tr>
           </thead>
           <tbody>
-            {expenses.length > 0 ? (
-              expenses.map((exp) => (
+            {filteredExpenses.length > 0 ? (
+              filteredExpenses.map((exp) => (
                 <tr key={exp._id}>
                   <td data-label="Category">{exp.category}</td>
                   <td data-label="Subcategory">{exp.subcategory}</td>
@@ -197,7 +236,7 @@ const Expenses = () => {
             ) : (
               <tr>
                 <td colSpan="6" className="no-expenses">
-                  No expenses found.
+                  No expenses found for this month.
                 </td>
               </tr>
             )}
