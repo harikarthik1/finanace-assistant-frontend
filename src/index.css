@@ -422,48 +422,57 @@ body {
 /* Expenses Page */
 .expenses-page {
   padding: 30px 20px;
-  background-color: #f9fafb;
+  background: linear-gradient(180deg, #f9fafb 0%, #eef2ff 100%);
   min-height: calc(100vh - 80px);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Title */
 .expenses-title {
   text-align: center;
   color: #1f2937;
-  font-size: 26px;
-  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 35px;
 }
 
 /* Alerts */
 .alert {
   text-align: center;
-  max-width: 500px;
-  margin: 0 auto 20px;
-  padding: 10px;
-  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto 25px;
+  padding: 12px 18px;
+  border-radius: 10px;
   font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .alert.success {
-  background-color: #d1fae5;
-  color: #065f46;
-  border: 1px solid #a7f3d0;
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #6ee7b7;
 }
 
 .alert.error {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #fef2f2;
+  color: #b91c1c;
   border: 1px solid #fecaca;
 }
 
-/* Expense Form */
+/* 🌈 Expense Form */
 .expenses-form {
-  max-width: 500px;
-  margin: 0 auto 30px;
-  background-color: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.expenses-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .expenses-form label {
@@ -476,11 +485,19 @@ body {
 .expenses-form input,
 .expenses-form select {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 15px;
   font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.expenses-form input:focus,
+.expenses-form select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .form-buttons {
@@ -490,21 +507,26 @@ body {
 
 .btn {
   flex: 1;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 15px;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
 }
 
 .primary-btn {
-  background-color: #3b82f6;
+  background-color: #4f46e5;
   color: white;
 }
 
 .primary-btn:hover {
-  background-color: #2563eb;
+  background-color: #4338ca;
 }
 
 .cancel-btn {
@@ -516,41 +538,50 @@ body {
   background-color: #dc2626;
 }
 
-/* Table */
+/* 🧾 Table Styling */
+.expenses-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
 .expenses-table {
-  width: 90%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 950px;
   margin: 0 auto;
   border-collapse: collapse;
   background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
   overflow: hidden;
+  font-size: 15px;
 }
 
 .expenses-table th,
 .expenses-table td {
-  padding: 12px;
+  padding: 14px 12px;
   text-align: center;
   border-bottom: 1px solid #eee;
 }
 
 .expenses-table th {
-  background-color: #f3f4f6;
-  color: #374151;
+  background-color: #4f46e5;
+  color: white;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.expenses-table tr:hover td {
+.expenses-table tr:nth-child(even) {
   background-color: #f9fafb;
 }
 
-.no-expenses {
-  text-align: center;
-  color: #6b7280;
-  padding: 20px;
+.expenses-table tr:hover {
+  background-color: #eef2ff;
+  transition: background 0.2s ease;
 }
-/* Buttons inside table */
+
+/* Action buttons */
 .edit-btn {
   background-color: #fbbf24;
   color: white;
@@ -558,6 +589,7 @@ body {
 .edit-btn:hover {
   background-color: #d97706;
 }
+
 .delete-btn {
   background-color: #ef4444;
   color: white;
@@ -565,13 +597,84 @@ body {
 .delete-btn:hover {
   background-color: #b91c1c;
 }
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
+
+/* Empty message */
+.no-expenses {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
 }
-.chart-container {
-  width: 400px;
-  margin: 20px auto;
+
+/* 💡 Responsive Table (Card layout for small screens) */
+@media screen and (max-width: 700px) {
+  .expenses-table,
+  .expenses-table thead,
+  .expenses-table tbody,
+  .expenses-table th,
+  .expenses-table td,
+  .expenses-table tr {
+    display: block;
+  }
+
+  .expenses-table thead {
+    display: none;
+  }
+
+  .expenses-table tr {
+    background-color: white;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 12px;
+  }
+
+  .expenses-table td {
+    text-align: left;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .expenses-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #4b5563;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+}
+
+/* 🟣 Floating “Add Expense” Button (mobile view) */
+@media screen and (max-width: 600px) {
+  .floating-add-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 16px 20px;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .floating-add-btn:hover {
+    background-color: #4338ca;
+    transform: scale(1.05);
+  }
 }
