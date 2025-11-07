@@ -45,13 +45,13 @@ const Expenses = () => {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/expenses/${editingId}`,
+          `https://finanace-assistant-backend.onrender.com/api/expenses/${editingId}`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setAlert({ type: "success", message: "Expense updated successfully!" });
       } else {
-        await axios.post("http://localhost:5000/api/expenses", form, {
+        await axios.post("https://finanace-assistant-backend.onrender.com/api/expenses", form, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAlert({ type: "success", message: "Expense added successfully!" });
@@ -69,7 +69,7 @@ const Expenses = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this expense?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/expenses/${id}`, {
+      await axios.delete(`https://finanace-assistant-backend.onrender.com/api/expenses/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAlert({ type: "success", message: "Expense deleted successfully!" });
